@@ -9,11 +9,11 @@ const secondsToDhms = (value) => {
   const m = Math.floor((seconds % 3600) / 60);
   const s = Math.floor(seconds % 60);
 
-  const dDisplay = d > 0 ? d + (d == 1 ? " día, " : " días, ") : "";
-  const hDisplay = h > 0 ? h + (h == 1 ? " hora, " : " horas, ") : "";
-  const mDisplay = m > 0 ? m + (m == 1 ? " minuto, " : " minutos, ") : "";
+  const dDisplay = d > 0 ? d + (d == 1 ? " día, " : " días ") : "";
+  const hDisplay = h > 0 ? h + (h == 1 ? " hora, " : " horas ") : "";
+  const mDisplay = m > 0 ? m + (m == 1 ? " minuto, " : " minutos ") : "";
   const sDisplay = s > 0 ? s + (s == 1 ? " segundo" : " segundos") : "";
-  return dDisplay + hDisplay + mDisplay + sDisplay;
+  return {days: dDisplay, hours: hDisplay, minutes: mDisplay, seconds: sDisplay};
 }
 
 const renderTime = ({ remainingTime }) => {
@@ -25,9 +25,13 @@ const renderTime = ({ remainingTime }) => {
     );
   }
 
+  const {days, hours, minutes, seconds} = secondsToDhms(remainingTime);
+
   return (
     <div className="timer">
-      <div className="value">{secondsToDhms(remainingTime)}</div>
+      <div className="value">
+        {days}<br/>{hours}<br/>{minutes}<br/>{seconds}
+      </div>
     </div>
   );
 };
@@ -39,10 +43,12 @@ function App() {
       <div className="timer-wrapper">
         <CountdownCircleTimer
           isPlaying
-          duration={(new Date(2021, 5, 1) - new Date()) / 1000}
+          duration={(new Date(2021, 5, 1) - new Date(2021, 4, 24)) / 1000}
+          initialRemainingTime={(new Date(2021, 5, 1) - new Date()) / 1000}
           colors={[["#004777", 0.33], ["#F7B801", 0.33], ["#A30000"]]}
           onComplete={() => [true, 1000]}
-          size={500}
+          strokeWidth={26}
+          size={300}
         >
           {renderTime}
         </CountdownCircleTimer>
