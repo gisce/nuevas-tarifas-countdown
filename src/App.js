@@ -20,7 +20,7 @@ const renderTime = ({ remainingTime }) => {
   if (remainingTime === 0) {
     return (
       <div className="timer">
-        <span role="img">🎉</span> Ya ha llegado el momento!
+        <span role="img">🤦‍♂️</span> Pues si que entraron....
       </div>
     );
   }
@@ -37,14 +37,15 @@ const renderTime = ({ remainingTime }) => {
 };
 
 function App() {
+  const endDate = new Date(2021, 5, 1);
   return (
     <div className="App">
       <h1>Aplicación de las nuevas tarifas</h1>
       <div className="timer-wrapper">
         <CountdownCircleTimer
           isPlaying
-          duration={(new Date(2021, 5, 1) - new Date(2021, 4, 24)) / 1000}
-          initialRemainingTime={(new Date(2021, 5, 1) - new Date()) / 1000}
+          duration={(endDate - new Date(2021, 4, 24)) / 1000}
+          initialRemainingTime={(endDate - new Date()) / 1000}
           colors={[["#004777", 0.33], ["#F7B801", 0.33], ["#A30000"]]}
           onComplete={() => [true, 1000]}
           strokeWidth={26}
@@ -53,6 +54,9 @@ function App() {
           {renderTime}
         </CountdownCircleTimer>
       </div>
+      <h1><span>🙅‍♂️</span> #novanaentrar</h1>
+      <h1><span>🕹️</span> #estonoesunjuego</h1>
+      <h1><span>🆙</span> #updateall</h1>
     </div>
   );
 }
