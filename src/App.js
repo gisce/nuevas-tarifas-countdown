@@ -63,6 +63,7 @@ function App() {
       <h2><span>🙅‍♂️</span> #novanaentrar</h2>
       <h2><span>🕹️</span> #estonoesunjuego</h2>
       <h2><span>🆙</span> #updateall</h2>
+      <h2><span>⚔️</span> #tariffwars</h2>
     </div>
   );
 }
